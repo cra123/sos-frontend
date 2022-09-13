@@ -1,0 +1,41 @@
+<div className="d-flex mb-2 align-items-end">
+            {props.user ? (
+              <>
+                <div className="p-2">
+                  <a className="btn btn-primary" href="{}" role="button">
+                    Users
+                  </a>
+                </div>
+                <div className="p-2">
+                  {/* <a className="btn btn-primary" href="{}" role="button"></a> */}
+                  <button
+                    className="btn btn-primary"
+                    onClick={props.handleLogout}
+                  >
+                    Logout
+                  </button>
+                </div>
+              </>
+            ) : (
+              <>
+                <div className="p-2">
+                  <a
+                    className="btn btn-primary"
+                    href={PATHS.LOGINPAGE}
+                    role="button"
+                  >
+                    Login
+                  </a>
+                </div>
+                <div className="p-2">
+                  <a
+                    className="btn btn-primary"
+                    href={PATHS.SIGNUPPAGE2}
+                    role="button"
+                  >
+                    Sign Up
+                  </a>
+                </div>
+              </>
+            )}
+          </div>

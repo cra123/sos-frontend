@@ -1,0 +1,31 @@
+.signup {
+    display: flex;
+    align-items: flex-start;
+    justify-content: flex-start;
+    margin-left: 25em;
+    margin-right: 25em;
+    margin-bottom: 2em;
+    margin-top: 5em;
+    border-radius: 20px;
+    background-color: orange;
+    /* color: white; */
+    font-weight: bold;
+}
+
+.signupform {
+    margin: 2em;
+}
+
+.signinParent {
+    display: flex;
+    background-image: url("https://images.unsplash.com/photo-1631053745666-5f3d88db46cb?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1172&q=80");
+    width: 100vw;
+    height: (100vh - 10em);
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+label {
+    text-align: left;
+    float: left;
+}
