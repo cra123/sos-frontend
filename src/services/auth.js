@@ -27,14 +27,6 @@ const authService = axios.create({
   baseURL: `${process.env.REACT_APP_SERVER_URL}/auth`,
 });
 
-const eventService = axios.create({
-  baseURL: `${process.env.REACT_APP_SERVER_URL}/events`,
-});
-
-const userService = axios.create({
-  baseURL: `${process.env.REACT_APP_SERVER_URL}/users`,
-});
-
 export function login(credentials) {
   return authService
     .post("/login", credentials)
@@ -65,17 +57,6 @@ export function logout() {
     .delete("/logout", {
       headers: {
         Authorization: USER_HELPERS.getUserToken(),
-      },
-    })
-    .then(successStatus)
-    .catch(internalServerError);
-}
-
-export function createUser() {
-  return eventService
-    .post("/", {
-      headers: {
-        authorization: USER_HELPERS.getUserToken(),
       },
     })
     .then(successStatus)

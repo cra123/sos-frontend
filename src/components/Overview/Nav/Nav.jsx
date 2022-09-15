@@ -3,7 +3,7 @@ import * as PATHS from "../../../utils/paths";
 import React from "react";
 
 function Nav(props) {
-    console.log(props)
+  console.log(props);
   return (
     <div>
       <nav className="navbar navbar-expand-lg bg-warning">
@@ -16,10 +16,10 @@ function Nav(props) {
                 </a>
               </div>
               <div className="d-flex mb-2 align-items-start">
-                <ul class="nav nav-tabs nav-bg">
-                  <li class="nav-item dropdown ">
+                <ul className="nav nav-tabs nav-bg">
+                  <li className="nav-item dropdown ">
                     <a
-                      class="nav-link dropdown-toggle text-light"
+                      className="nav-link dropdown-toggle text-light"
                       data-toggle="dropdown"
                       href={PATHS.EMERGENCYLIST}
                       role="button"
@@ -27,17 +27,17 @@ function Nav(props) {
                     >
                       Emergency
                     </a>
-                    <div class="dropdown-menu ">
-                      <a class="dropdown-item" href={PATHS.CREATEEMERGENCY}>
+                    <div className="dropdown-menu ">
+                      <a className="dropdown-item" href={PATHS.CREATEEMERGENCY}>
                         Create Event
                       </a>
-                      <a class="dropdown-item" href={PATHS.EMERGENCYLIST}>
+                      <a className="dropdown-item" href={PATHS.EMERGENCYLIST}>
                         Show Events
                       </a>
                     </div>
                   </li>
-                  <li class="nav-item">
-                    <a class="nav-link text-light" href={PATHS.USERLIST}>
+                  <li className="nav-item">
+                    <a className="nav-link text-light" href={PATHS.USERLIST}>
                       Users
                     </a>
                   </li>

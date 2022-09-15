@@ -2,9 +2,8 @@ import "./listEmergency.css";
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import * as USER_HELPERS from "../../../utils/userToken";
-import * as PATHS from "../../../utils/paths";
 import { useNavigate } from "react-router-dom";
-const URL = "http://localhost:5005/api/events";
+const URL = `${process.env.REACT_APP_SERVER_URL}/events`;
 
 function ListEmergency(props) {
   const [emergency, setEmergency] = useState([]);
@@ -42,7 +41,20 @@ function ListEmergency(props) {
               key={index}
               style={{ width: "18rem", margin: "2em" }}
             >
-              <img src={item.imageUrl} className="card-img-top" alt="..."></img>
+              {item.imageUrl ? (
+                <img
+                  src={item.imageUrl}
+                  className="card-img-top"
+                  alt="..."
+                ></img>
+              ) : (
+                <img
+                  src="https://static.vecteezy.com/system/resources/previews/002/174/436/non_2x/hazard-warning-symbol-sign-on-white-background-free-vector.jpg"
+                  className="card-img-top"
+                  alt="..."
+                ></img>
+              )}
+
               <div className="card-body">
                 <h5 className="card-title">{item.typeOfEmergency} Emergency</h5>
                 <p className="card-text">{item.description}</p>
@@ -60,16 +72,30 @@ function ListEmergency(props) {
                   Details
                 </button>
               </div>
-              <div
-                className="card-footer"
-                style={{
-                  backgroundColor: "red",
-                  color: "white",
-                  fontWeight: "bold",
-                }}
-              >
-                {item.status}
-              </div>
+
+              {item.status !== "Active" ? (
+                <div
+                  className="card-footer"
+                  style={{
+                    backgroundColor: "green",
+                    color: "white",
+                    fontWeight: "bold",
+                  }}
+                >
+                  {item.status}
+                </div>
+              ) : (
+                <div
+                  className="card-footer"
+                  style={{
+                    backgroundColor: "red",
+                    color: "white",
+                    fontWeight: "bold",
+                  }}
+                >
+                  {item.status}
+                </div>
+              )}
             </div>
           );
         })}

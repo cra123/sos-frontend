@@ -3,6 +3,8 @@ import React, { useState, useEffect } from "react";
 import axios from "axios";
 import * as USER_HELPERS from "../../../utils/userToken";
 import { useParams } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
+import * as PATHS from "../../../utils/paths";
 
 function DetailEmergency(props) {
   // const {emergency } = props;
@@ -15,6 +17,7 @@ function DetailEmergency(props) {
   const [emergencyReaction, setEmergencyReaction] = useState();
   const [emergencyComments, setEmergencyComments] = useState({});
   const [status, setStatus] = useState("True");
+  const navigate = useNavigate();
 
   const { content } = emergencyComments;
 
@@ -61,10 +64,35 @@ function DetailEmergency(props) {
     return setEmergencyComments({ ...emergencyReaction, [name]: value });
   }
 
+  function viewMap() {
+    const lat = emergencyDetails.geolocation_lat;
+    const lng = emergencyDetails.geolocation_lng;
+    window.open(
+      `https://www.google.com/maps/search/?api=1&query=${lat},${lng}`
+    );
+  }
+  function handleDelete(event) {
+    event.preventDefault();
+    const EVENTURL = `${process.env.REACT_APP_SERVER_URL}/events/${emergencyid}`;
+    axios
+      .delete(EVENTURL, {
+        headers: {
+          Authorization: USER_HELPERS.getUserToken(),
+        },
+      })
+      .then((res) => {
+        console.log(res);
+        navigate(PATHS.EMERGENCYLIST);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  }
+
   function handleReaction(event) {
     event.preventDefault();
     const token = USER_HELPERS.getUserToken();
-    const reactionURL = `http://localhost:5005/api/events/${emergencyid}/reactions`;
+    const reactionURL = `${process.env.REACT_APP_SERVER_URL}/events/${emergencyid}/reactions`;
     const headers = { Authorization: `${token}` };
     const data = {
       content,
@@ -82,10 +110,34 @@ function DetailEmergency(props) {
       ) : (
         <div className="card-header headerResolved">Resolved</div>
       )}
-      <div className="card-body">
-        <h5 className="card-title eventTitle">
-          {emergencyDetails.typeOfEmergency}
-        </h5>
+      <div className="card-body ">
+        <div className="eventTitleDiv">
+          <h5 className="card-title eventTitle">
+            {emergencyDetails.typeOfEmergency}
+          </h5>
+          <button className="btn btn-primary" onClick={viewMap}>
+            View Map Location
+          </button>
+        </div>
+        <div className="eventTitleButton">
+          <button
+            className="btn btn-danger"
+            style={{ marginLeft: "10px" }}
+            onClick={(props) => {
+              navigate("/emergency/detail/update/" + emergencyDetails._id);
+            }}
+          >
+            Edit
+          </button>
+          <button
+            className="btn btn-info"
+            onClick={handleDelete}
+            style={{ marginLeft: "2px" }}
+          >
+            Delete
+          </button>
+        </div>
+
         <h6>Description:</h6>
         <div className="eventDescription">
           <p className="card-text">{emergencyDetails.description}</p>
@@ -104,16 +156,16 @@ function DetailEmergency(props) {
       <div>
         <div className="card-body">
           <form onSubmit={handleReaction}>
-            <div class="input-group mb-3">
+            <div className="input-group mb-3">
               <input
                 type="text"
-                class="form-control"
+                className="form-control"
                 placeholder="React Comment"
                 name="content"
                 value={content}
                 onChange={handleInputChange}
               ></input>
-              <button class="btn btn-primary" type="submit">
+              <button className="btn btn-primary" type="submit">
                 React
               </button>
             </div>

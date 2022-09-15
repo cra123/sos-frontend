@@ -20,6 +20,7 @@
     color: white;
     border-radius: 10px;
     padding: 0.5em;
+    width: 5em
 }
 
 .headerEmergency {
@@ -49,4 +50,16 @@
 .eventContent{
     align-items: center;
     padding: 2px;
+}
+
+.eventTitleDiv{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.eventTitleButton {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
 }

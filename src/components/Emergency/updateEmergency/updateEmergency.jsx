@@ -1,28 +1,61 @@
-import "./createEmergency.css";
-import React, { useState } from "react";
+import "./updateEmergency.css";
+import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import * as PATHS from "../../../utils/paths";
 import * as USER_HELPERS from "../../../utils/userToken";
 import axios from "axios";
+import { useParams } from "react-router-dom";
 
-function CreateEmargency() {
+function UpdateEmergency() {
+  const { emergencyid } = useParams();
+  const [emergency, setEmergency] = useState({});
+  const [currentEmergency, setCurrentEmergency] = useState({});
+  const [syncStatus, setSyncStatus] = useState(true);
+
+  useEffect(() => {
+    const EVENTURL = `${process.env.REACT_APP_SERVER_URL}/events`;
+    if (syncStatus) {
+      axios
+        .get(EVENTURL, {
+          headers: {
+            Authorization: USER_HELPERS.getUserToken(),
+          },
+        })
+        .then((res) => {
+          setEmergency(res.data);
+          console.log(emergency);
+          return emergency;
+        })
+        .then((emergency) => {
+          const getEmergencyDetails = emergency.find(
+            (item) => item._id === emergencyid
+          );
+          console.log(getEmergencyDetails);
+          return getEmergencyDetails;
+        })
+        .then((getEmergencyDetails) => {
+          setCurrentEmergency(getEmergencyDetails);
+          setSyncStatus(false);
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+    }
+
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [emergencyid, emergency, syncStatus]);
+
   const [form, setForm] = useState({
-    typeOfEmergency: "",
-    location: "",
-    description: "",
+    typeOfEmergency: currentEmergency.typeOfEmergency,
+    location: currentEmergency.location,
+    description: currentEmergency.description,
     imageUrl: "",
-    status: "",
+    status: currentEmergency.status,
     geolocation_lat: "",
     geolocation_lng: "",
   });
 
-  const {
-    typeOfEmergency,
-    location,
-    description,
-    imageUrl,
-    status,
-  } = form;
+  const { typeOfEmergency, location, description, imageUrl, status } = form;
 
   const [error, setError] = useState(null);
   const [lat, setLat] = useState("");
@@ -71,11 +104,10 @@ function CreateEmargency() {
       geolocation_lat: lat,
       geolocation_lng: lng,
     };
-    console.log(details);
     const token = USER_HELPERS.getUserToken();
-    const createEmergencyURL = `${process.env.REACT_APP_SERVER_URL}/events`;
+    const updateEmergencyURL = `${process.env.REACT_APP_SERVER_URL}/events/${emergencyid}`;
     const headers = { Authorization: `${token}` };
-    axios.post(`${createEmergencyURL}`, details, { headers }).then((res) => {
+    axios.put(`${updateEmergencyURL}`, details, { headers }).then((res) => {
       if (!res.status) {
         console.error("Signup was unsuccessful: ", res);
         return setError({
@@ -85,6 +117,7 @@ function CreateEmargency() {
       navigate(PATHS.EMERGENCYLIST);
     });
   }
+  console.log(currentEmergency);
   return (
     <div className="create-emergency">
       <div className="signinParent">
@@ -99,7 +132,7 @@ function CreateEmargency() {
                   id="inputEmail"
                   placeholder="location"
                   name="location"
-                  value={location}
+                  value={currentEmergency.location}
                   onChange={handleInputChange}
                   required
                 ></input>
@@ -122,7 +155,9 @@ function CreateEmargency() {
                     name="typeOfEmergency"
                     onChange={handleInputChange}
                   >
-                    <option>Type of Emergency</option>
+                    <option value={currentEmergency.typeOfEmergency}>
+                      Type of Emergency
+                    </option>
                     <option value="Medical">Medical</option>
                     <option value="Fire">Fire</option>
                     <option value="Shoot Out">Shoot Out</option>
@@ -138,7 +173,9 @@ function CreateEmargency() {
                     name="status"
                     onChange={handleInputChange}
                   >
-                    <option>Emergency Status</option>
+                    <option value={currentEmergency.status}>
+                      Emergency Status
+                    </option>
                     <option value="Active">Active</option>
                     <option value="Attended">Attended</option>
                     <option value="Closed">Closed</option>
@@ -153,7 +190,7 @@ function CreateEmargency() {
                   placeholder="Shortly Describe the Emergency"
                   id="floatingTextarea"
                   name="description"
-                  value={description}
+                  value={currentEmergency.description}
                   onChange={handleInputChange}
                 ></textarea>
               </div>
@@ -178,4 +215,4 @@ function CreateEmargency() {
   );
 }
 
-export default CreateEmargency;
+export default UpdateEmergency;
