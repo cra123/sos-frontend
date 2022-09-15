@@ -29,18 +29,18 @@ function Nav(props) {
                     </a>
                     <div className="dropdown-menu ">
                       <a className="dropdown-item" href={PATHS.CREATEEMERGENCY}>
-                        Create Event
+                        Broadcast Emergency
                       </a>
                       <a className="dropdown-item" href={PATHS.EMERGENCYLIST}>
-                        Show Events
+                        Show Emergency
                       </a>
                     </div>
                   </li>
-                  <li className="nav-item">
+                  {/* <li className="nav-item">
                     <a className="nav-link text-light" href={PATHS.USERLIST}>
                       Users
                     </a>
-                  </li>
+                  </li> */}
                 </ul>
               </div>
               <div className="d-flex mb-2 align-items-end">

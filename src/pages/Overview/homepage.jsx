@@ -1,8 +1,8 @@
 import Landing from "../../components/Overview/landing/Landing";
 
-function ShowHomepage (){
+function ShowHomepage (props){
     return (
-        <Landing />
+        <Landing {...props}/>
     )
 }
 

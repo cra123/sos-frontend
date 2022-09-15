@@ -22,7 +22,7 @@ function DetailEmergency(props) {
   const { content } = emergencyComments;
 
   useEffect(() => {
-    const EVENTURL = "http://localhost:5005/api/events";
+    const EVENTURL = `${process.env.REACT_APP_SERVER_URL}/api/events`;
     if (status === "True") {
       axios
         .get(EVENTURL, {

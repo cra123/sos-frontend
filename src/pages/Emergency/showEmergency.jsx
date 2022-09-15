@@ -3,7 +3,6 @@ import ListEmergency from "../../components/Emergency/listEmergency/listEmergenc
 function ShowEmergency() {
     return (
         <div className="showEmergency">
-        <h1>ShowEmergency</h1>
         <ListEmergency />
         </div>
     );

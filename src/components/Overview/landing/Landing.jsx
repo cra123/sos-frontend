@@ -1,6 +1,7 @@
 import "./Landing.css"
+import * as PATHS from "../../../utils/paths";
 
-function Landing() {
+function Landing(props) {
     return (
       <div className="main-intro" style={{}}>
         <div>
@@ -24,12 +25,27 @@ function Landing() {
                   an alert to your friends and family when you are in danger.
                 </p>
               </div>
-
-              <div className="intro-buttom">
-                <a className="btn btn-primary btn-lg" href="{}" role="button">
-                  Start Today
-                </a>
-              </div>
+              {props.user ? (
+                <div className="intro-buttom">
+                  <a
+                    className="btn btn-primary btn-lg"
+                    href={PATHS.CREATEEMERGENCY}
+                    role="button"
+                  >
+                    Broadcast Emergency
+                  </a>
+                </div>
+              ) : (
+                <div className="intro-buttom">
+                  <a
+                    className="btn btn-primary btn-lg"
+                    href={PATHS.SIGNUPPAGE2}
+                    role="button"
+                  >
+                    Start Today
+                  </a>
+                </div>
+              )}
             </div>
 
             <img
