@@ -39,3 +39,36 @@
               </>
             )}
           </div>
+
+
+
+
+<div className="d-flex mb-2 align-items-start">
+                <div className="p-2">
+                  <a
+                    className="btn btn-primary"
+                    href={PATHS.CREATEEMERGENCY}
+                    role="button"
+                  >
+                    Emergency
+                  </a>
+                </div>
+                <div className="p-2">
+                  <a
+                    className="btn btn-primary"
+                    href={PATHS.EMERGENCYLIST}
+                    role="button"
+                  >
+                    List Emergency
+                  </a>
+                </div>
+                <div className="p-2">
+                  <a
+                    className="btn btn-primary"
+                    href={PATHS.SIGNUPPAGE2}
+                    role="button"
+                  >
+                    Users
+                  </a>
+                </div>
+              </div>

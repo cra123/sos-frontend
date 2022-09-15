@@ -1,7 +1,5 @@
 import "./Nav.css";
-import { Link } from "react-router-dom";
 import * as PATHS from "../../../utils/paths";
-import * as CONSTS from "../../../utils/consts";
 import React from "react";
 
 function Nav(props) {
@@ -18,24 +16,32 @@ function Nav(props) {
                 </a>
               </div>
               <div className="d-flex mb-2 align-items-start">
-                <div className="p-2">
-                  <a
-                    className="btn btn-primary"
-                    href={PATHS.CREATEEMERGENCY}
-                    role="button"
-                  >
-                    Emergency
-                  </a>
-                </div>
-                <div className="p-2">
-                  <a
-                    className="btn btn-primary"
-                    href={PATHS.SIGNUPPAGE2}
-                    role="button"
-                  >
-                    Users
-                  </a>
-                </div>
+                <ul class="nav nav-tabs nav-bg">
+                  <li class="nav-item dropdown ">
+                    <a
+                      class="nav-link dropdown-toggle text-light"
+                      data-toggle="dropdown"
+                      href={PATHS.EMERGENCYLIST}
+                      role="button"
+                      aria-expanded="false"
+                    >
+                      Emergency
+                    </a>
+                    <div class="dropdown-menu ">
+                      <a class="dropdown-item" href={PATHS.CREATEEMERGENCY}>
+                        Create Event
+                      </a>
+                      <a class="dropdown-item" href={PATHS.EMERGENCYLIST}>
+                        Show Events
+                      </a>
+                    </div>
+                  </li>
+                  <li class="nav-item">
+                    <a class="nav-link text-light" href={PATHS.USERLIST}>
+                      Users
+                    </a>
+                  </li>
+                </ul>
               </div>
               <div className="d-flex mb-2 align-items-end">
                 <div className="p-2">

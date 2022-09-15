@@ -9,6 +9,7 @@ import ShowHomepage from "../pages/Overview/homepage";
 import ShowLogin from "../pages/auth/login";
 
 import ShowCreateEmergency from "../pages/Emergency/showCreateEmergency";
+import ShowEmergency from "../pages/Emergency/showEmergency";
 
 const routes = (props) => {
   const { user } = props;
@@ -25,6 +26,14 @@ const routes = (props) => {
     {
       path: PATHS.CREATEEMERGENCY,
       element: <ShowCreateEmergency {...props} />,
+    },
+    {
+      path: PATHS.EMERGENCYLIST,
+      element: <ShowEmergency {...props} />,
+    },
+    {
+      path: PATHS.EMERGENCYDETAIL,
+      element: <ShowEmergency {...props} />,
     },
     {
       path: PATHS.SIGNUPPAGE2,

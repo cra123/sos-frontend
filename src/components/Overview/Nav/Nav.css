@@ -1,8 +1,10 @@
 
-.btn-primary{
-    background-color: #BD7A00 !important;
+.btn-danger{
     color: #fff;
     border: none;
+    height: 30px;
+    padding-top: 1px;
+    padding-bottom: 1px;
 }
 
 .intro{
@@ -10,3 +12,8 @@
     font-weight: bold;
 }
 
+.nav-bg{
+    background-color:#BD7A00  ;
+    padding: 5px;
+    border-radius: 2px;
+}

@@ -1,0 +1,52 @@
+.eventDescription {
+    display: flex;
+    align-items: flex-start;
+    border: solid 1px #e6e6e6;
+    font-family: 'Roboto', sans-serif;
+    padding: 2em;
+    border-radius: 10px;
+}
+
+.eventFooter {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-family: 'Roboto', sans-serif;
+    margin-bottom: -1em;
+}
+
+.eventTitle {
+    background-color: orange;
+    color: white;
+    border-radius: 10px;
+    padding: 0.5em;
+}
+
+.headerEmergency {
+    background-color: red !important;
+    font-weight: bold;
+}
+
+.headerResolved {
+    background-color: green !important;
+}
+
+.reactionsBox {
+    border: 1px solid black;
+    border-radius: 20px;
+    padding: 0.5em;
+}
+
+.reactionDetail {
+    font-family: 'Roboto', sans-serif;
+    align-items: center;
+    background-color: gainsboro;
+    border-radius: 10px;
+    margin: 2px;
+    width: fit-content;
+}
+
+.eventContent{
+    align-items: center;
+    padding: 2px;
+}

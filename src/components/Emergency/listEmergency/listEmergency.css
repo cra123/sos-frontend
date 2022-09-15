@@ -1,0 +1,26 @@
+.emergency-type {
+    display: flex;
+    font-size: 1.2rem;
+    font-weight: 600;
+    color: #000;
+}
+
+.content-type{
+    margin-left: 2rem;
+}
+
+.btn-primary {
+    background-color: #BD7A00 !important;
+    color: #fff;
+    border: none;
+}
+
+.emergency-body{
+    background-color: orange;
+    
+}
+
+.status-div{
+    display: flex;
+    justify-content: flex-end;
+}

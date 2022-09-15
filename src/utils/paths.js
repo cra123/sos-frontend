@@ -7,3 +7,5 @@ export const CREATEEMERGENCY = "/emergency/create";
 export const EMERGENCYLIST = "/emergency/list";
 export const EMERGENCYDETAIL = "/emergency/detail";
 export const EMERGENCYUPDATE = "/emergency/update";
+export const USERLIST = "/user/list";
+export const USERDETAIL = "/user/detail";

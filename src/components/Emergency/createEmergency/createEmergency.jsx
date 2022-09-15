@@ -5,7 +5,7 @@ import { useNavigate } from "react-router-dom";
 import * as PATHS from "../../../utils/paths";
 import * as USER_HELPERS from "../../../utils/userToken";
 
-function CreateEmargency({ authenticate }) {
+function CreateEmargency() {
   const [form, setForm] = useState({
     typeOfEmergency: "",
     location: "",
