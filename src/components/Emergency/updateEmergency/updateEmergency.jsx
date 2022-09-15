@@ -205,7 +205,7 @@ function UpdateEmergency() {
                 type="submit"
                 className="btn btn-primary font-weight-bold"
               >
-                Call for Help
+                Update Emergency
               </button>
             </form>
           </div>

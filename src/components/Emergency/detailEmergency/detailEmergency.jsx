@@ -7,7 +7,6 @@ import { useNavigate } from "react-router-dom";
 import * as PATHS from "../../../utils/paths";
 
 function DetailEmergency(props) {
-  // const {emergency } = props;
   const { emergencyid } = useParams();
 
   const [emergency, setEmergency] = useState({});
@@ -16,14 +15,14 @@ function DetailEmergency(props) {
   const [emergencyUser, setEmergencyUser] = useState({});
   const [emergencyReaction, setEmergencyReaction] = useState();
   const [emergencyComments, setEmergencyComments] = useState({});
-  const [status, setStatus] = useState("True");
+  const [status, setStatus] = useState(true);
   const navigate = useNavigate();
 
   const { content } = emergencyComments;
 
   useEffect(() => {
-    const EVENTURL = `${process.env.REACT_APP_SERVER_URL}/api/events`;
-    if (status === "True") {
+    const EVENTURL = `${process.env.REACT_APP_SERVER_URL}/events`;
+    if (status === true) {
       axios
         .get(EVENTURL, {
           headers: {
@@ -101,7 +100,7 @@ function DetailEmergency(props) {
     axios.post(`${reactionURL}`, data, { headers }).then((res) => {
       console.log(res);
     });
-    setStatus("True");
+    setStatus(true);
   }
   return (
     <div className="card">
@@ -177,10 +176,10 @@ function DetailEmergency(props) {
           <h5 className="card-title">Reactions</h5>
           <div className="reactionsBox">
             {emergencyReaction &&
-              emergencyReaction.map((item) => {
+              emergencyReaction.map((item, index) => {
                 return (
                   <div className="reactionDetail">
-                    <p className="eventContent">{item.content}</p>
+                    <p key={index} className="eventContent">{item.content}</p>
                   </div>
                 );
               })}
