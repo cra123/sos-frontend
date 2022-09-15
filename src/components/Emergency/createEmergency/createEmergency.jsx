@@ -4,6 +4,7 @@ import { createUser } from "../../../services/auth";
 import { useNavigate } from "react-router-dom";
 import * as PATHS from "../../../utils/paths";
 import * as USER_HELPERS from "../../../utils/userToken";
+import axios from "axios";
 
 function CreateEmargency() {
   const [form, setForm] = useState({
@@ -33,7 +34,10 @@ function CreateEmargency() {
       status,
     };
     console.log(details);
-    createUser(details).then((res) => {
+    const token = USER_HELPERS.getUserToken();
+    const createEmergencyURL = "http://localhost:5005/api/events";
+    const headers = { Authorization: `${token}` };
+    axios.post(`${createEmergencyURL}`, details, { headers }).then((res) => {
       if (!res.status) {
         console.error("Signup was unsuccessful: ", res);
         return setError({
@@ -41,7 +45,17 @@ function CreateEmargency() {
         });
       }
       navigate(PATHS.HOMEPAGE);
-    });
+    })
+    // createUser(details).then((res) => {
+    //   if (!res.status) {
+    //     console.error("Signup was unsuccessful: ", res);
+    //     return setError({
+    //       message: "Signup was unsuccessful! Please check the console.",
+    //     });
+    //   }
+    //   navigate(PATHS.HOMEPAGE);
+    // });
+
   }
   return (
     <div className="create-emergency">
