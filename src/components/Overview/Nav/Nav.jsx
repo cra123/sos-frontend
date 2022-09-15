@@ -11,7 +11,10 @@ function Nav(props) {
           <>
             <div className="container-fluid">
               <div className="d-flex justify-content-around me-auto flex-grow-1 p-2 ">
-                <a className="navbar-brand text-light intro" href="{}">
+                <a
+                  className="navbar-brand text-light intro"
+                  href={PATHS.HOMEPAGE}
+                >
                   SoS Alarm
                 </a>
               </div>
