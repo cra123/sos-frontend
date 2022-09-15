@@ -7,9 +7,8 @@ const URL = `${process.env.REACT_APP_SERVER_URL}/events`;
 
 function ListEmergency(props) {
   const [emergency, setEmergency] = useState([]);
-  const [loading, setLoading] = useState(true);
-  const [error, setError] = useState(false);
-  const [status, setStatus] = useState(false);
+  const [, setLoading] = useState(true);
+  const [, setError] = useState(false);
 
   const navigate = useNavigate();
 
