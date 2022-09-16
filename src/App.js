@@ -1,9 +1,9 @@
 import { useEffect, useState } from "react";
-import { Routes, Route, Navigate, useNavigate } from "react-router-dom";
+import { Routes, Route, useNavigate } from "react-router-dom";
 import { getLoggedIn, logout } from "./services/auth";
 import routes from "./config/routes";
 import * as USER_HELPERS from "./utils/userToken";
-import * as PATHS from "../utils/paths";
+import * as PATHS from "./utils/paths";
 
 import Nav from "./components/Overview/Nav/Nav";
 import ShowEmergencyDetails from "./pages/Emergency/showEmergencyDetails";
